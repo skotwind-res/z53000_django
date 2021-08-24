@@ -31,3 +31,7 @@ def add_new(request):
     return render(request, 'home/add_news.html', {'form': NewNew()})
 
 
+def contact(request):
+    return HttpResponse("Верните Дурова!!!")
+
+
