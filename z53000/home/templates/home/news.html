@@ -1,0 +1,14 @@
+{% extends "home/common.html" %}
+
+{% block header %}
+     <h2>News</h2>
+{% endblock %}
+
+{% block content %}
+    {% for new in data %}
+        <h2>{{ new.title }}</h2>
+        <p>{{ new.content }}</p>
+        <br>
+    {% endfor %}
+
+{% endblock %}
