@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class News(models.Model):
     title = models.CharField(max_length=20)
@@ -14,8 +12,8 @@ class News(models.Model):
         verbose_name_plural = 'Новости'
         ordering = ['-published']
 
-    def __str__(self):
-        return f'{self.title} - {self.published}'
+    # def __str__(self):
+    #     return f'{self.title} - {self.published}'
 
 
 class Category(models.Model):
@@ -27,3 +25,21 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Personal(models.Model):
+    name = models.CharField(max_length=20)
+    surname = models.CharField(max_length=20)
+    master = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
+    sellary = models.FloatField()
+    pidor = models.BooleanField()
+    start_work_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Петушару'
+        verbose_name_plural = 'Петушары'
+        ordering = ['-start_work_date']
+
+
+    def __str__(self):
+        return f"{self.name[0]}.{self.surname}"

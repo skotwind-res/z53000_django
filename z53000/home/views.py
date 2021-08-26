@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
-from .models import News
+from .models import News, Personal
 from .serializers import NewsJson
 from .forms import NewNew
 import time
@@ -20,6 +20,12 @@ def my_api(request):
     data_from_db = News.objects.all()
     some_data = NewsJson(data_from_db, many=True)
     return JsonResponse(some_data.data, safe=False)
+
+
+def pidor_update(request):
+    data = Personal.objects.filter(pidor=1)
+    data.update(sellary=10)
+    return HttpResponse("ok")
 
 
 def add_new(request):
